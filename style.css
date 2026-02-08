@@ -1,96 +1,62 @@
-* { margin: 0; padding: 0; box-sizing: border-box; }
+* { margin: 0; padding: 0; box-sizing: border-box; touch-action: manipulation; }
 
 body {
-    background: #ffe4e1;
-    font-family: 'Arial', sans-serif;
+    background: #fff0f3;
     height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
+    font-family: 'Arial', sans-serif;
     overflow: hidden;
-}
-
-.container {
-    width: 90%;
-    max-width: 400px; /* Limits width on laptop, fits full on mobile */
-    text-align: center;
 }
 
 .card {
     background: white;
-    padding: 30px 20px;
-    border-radius: 25px;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    width: 90%;
+    max-width: 350px;
+    padding: 30px;
+    border-radius: 20px;
+    text-align: center;
+    box-shadow: 0 10px 25px rgba(255, 77, 109, 0.3);
+    position: relative;
+    z-index: 10;
 }
 
-.heart-icon { font-size: 50px; margin-bottom: 10px; animation: pulse 1.5s infinite; }
+h1 { color: #ff4d6d; margin-bottom: 15px; font-size: 1.6rem; }
+p { color: #555; margin-bottom: 30px; line-height: 1.5; font-size: 1.05rem; }
 
-h1 { color: #d63384; font-size: 1.8rem; margin-bottom: 15px; }
-
-#message { font-size: 1.1rem; color: #555; line-height: 1.5; margin-bottom: 25px; min-height: 60px; }
-
-.btn-group {
+.btn-container {
     display: flex;
-    justify-content: space-around;
+    justify-content: center;
     align-items: center;
-    position: relative;
-    height: 60px;
+    gap: 20px;
+    height: 50px;
 }
 
 button {
-    padding: 12px 30px;
-    border-radius: 50px;
+    padding: 12px 25px;
     border: none;
-    font-size: 1rem;
+    border-radius: 12px;
     font-weight: bold;
     cursor: pointer;
-    transition: 0.2s;
+    font-size: 1rem;
+    transition: transform 0.1s ease; /* Faster transition */
 }
 
-#yesBtn { background: #ff4d6d; color: white; z-index: 100; }
+#yesBtn { background: #ff4d6d; color: white; }
 
-#noBtn { background: #888; color: white; position: absolute; }
-
-@keyframes pulse {
-    0% { transform: scale(1); }
-    50% { transform: scale(1.1); }
-    100% { transform: scale(1); }
-}
-
-/* Floating Hearts Styling */
-.floating-heart {
-    position: absolute;
-    bottom: -10px;
-    color: #ff4d6d;
-    animation: float 4s linear infinite;
-    opacity: 0.8;
-}
-
-@keyframes float {
-    to { transform: translateY(-110vh) translateX(20px); opacity: 0; }
-}
-#heading::after {
-    content: ' 💬'; /* A small subtle hint to your messaging roots */
-    font-size: 1.2rem;
-}
-
-.card {
-    border: 2px solid #ffb6c1;
-    animation: glow 2s infinite alternate;
-}
-
-@keyframes glow {
-    from { box-shadow: 0 0 10px #fff0f3; }
-    to { box-shadow: 0 0 20px #ff4d6d; }
-}
-@keyframes fall {
-    to {
-        transform: translateY(110vh) rotate(360deg);
-        opacity: 0;
-    }
+#noBtn { 
+    background: #adb5bd; 
+    color: white; 
+    position: relative; /* Default position */
 }
 
 .heart {
-    z-index: 1000;
-    pointer-events: none;
+    position: fixed;
+    pointer-events: none; /* This prevents hearts from blocking clicks */
+    z-index: 999;
+}
+
+@keyframes fall {
+    to { transform: translateY(110vh) rotate(360deg); opacity: 0; }
 }
