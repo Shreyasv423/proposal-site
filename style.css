@@ -1,59 +1,71 @@
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
 body {
-    margin: 0;
-    padding: 0;
+    background: #ffe4e1;
+    font-family: 'Arial', sans-serif;
     height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
-    background: linear-gradient(45deg, #ff9a9e 0%, #fecfef 99%, #fecfef 100%);
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     overflow: hidden;
 }
 
-.glass-card {
-    background: rgba(255, 255, 255, 0.2);
-    backdrop-filter: blur(10px);
-    border-radius: 20px;
-    padding: 40px;
+.container {
+    width: 90%;
+    max-width: 400px; /* Limits width on laptop, fits full on mobile */
     text-align: center;
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
-    border: 1px solid rgba(255, 255, 255, 0.3);
-    z-index: 10;
 }
 
-h1 { color: #d63384; margin-bottom: 20px; }
-
-#typewriter {
-    font-size: 1.2rem;
-    color: #444;
-    min-height: 50px;
-    margin-bottom: 30px;
+.card {
+    background: white;
+    padding: 30px 20px;
+    border-radius: 25px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
 }
 
-.buttons { display: flex; gap: 20px; justify-content: center; }
+.heart-icon { font-size: 50px; margin-bottom: 10px; animation: pulse 1.5s infinite; }
+
+h1 { color: #d63384; font-size: 1.8rem; margin-bottom: 15px; }
+
+#message { font-size: 1.1rem; color: #555; line-height: 1.5; margin-bottom: 25px; min-height: 60px; }
+
+.btn-group {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    position: relative;
+    height: 60px;
+}
 
 button {
-    padding: 12px 25px;
-    border: none;
+    padding: 12px 30px;
     border-radius: 50px;
-    cursor: pointer;
+    border: none;
+    font-size: 1rem;
     font-weight: bold;
-    transition: 0.3s;
+    cursor: pointer;
+    transition: 0.2s;
 }
 
-#yesBtn { background-color: #ff4d6d; color: white; box-shadow: 0 4px 15px rgba(255, 77, 109, 0.4); }
+#yesBtn { background: #ff4d6d; color: white; z-index: 100; }
 
-#noBtn { background-color: #eee; color: #666; position: relative; }
+#noBtn { background: #888; color: white; position: absolute; }
 
-/* Heart Animation */
-.heart {
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+    100% { transform: scale(1); }
+}
+
+/* Floating Hearts Styling */
+.floating-heart {
     position: absolute;
+    bottom: -10px;
     color: #ff4d6d;
-    font-size: 20px;
-    animation: fall linear forwards;
-    z-index: 1;
+    animation: float 4s linear infinite;
+    opacity: 0.8;
 }
 
-@keyframes fall {
-    to { transform: translateY(100vh) rotate(360deg); }
+@keyframes float {
+    to { transform: translateY(-110vh) translateX(20px); opacity: 0; }
 }
