@@ -148,3 +148,18 @@ button{
 .message{font-size:15px;}
 
 }
+.buttons {
+    position: relative;
+    z-index: 10;
+}
+
+#yesBtn {
+    position: relative;
+    z-index: 5;
+}
+
+#noBtn {
+    position: relative;
+    z-index: 6;
+}
+
