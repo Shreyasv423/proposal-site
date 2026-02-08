@@ -22,67 +22,68 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
 
-    // ---------- YES BUTTON ----------
-    const yesBtn = document.getElementById("yesBtn");
 
-    if (yesBtn) {
+         const music = document.getElementById("bgMusic");
 
-        yesBtn.addEventListener("click", () => {
+const yesBtn = document.getElementById("yesBtn");
+const noBtn = document.getElementById("noBtn");
 
-            // 🔥 PLAY MUSIC ONLY HERE
-            if (music) {
-                music.currentTime = 0;
-                music.play().catch(() => {});
-            }
 
-            document.body.innerHTML = `
-            <div class="loveScene">
-                <div class="loveCard">
+// ---------- YES BUTTON ----------
+yesBtn.addEventListener("click", function(e) {
 
-                    <h1 class="bigName">Anvita ❤️</h1>
+    e.stopPropagation();
 
-                    <p class="reveal">
-                        You just made this moment the most special memory of my life.
-                    </p>
-
-                    <p class="reveal delay1">
-                        I promise to respect you, support you,
-                        and always stand beside you.
-                    </p>
-
-                    <p class="reveal delay2">
-                        I may not be perfect,
-                        but my feelings for you are real.
-                    </p>
-
-                    <p class="reveal delay3">
-                        This is just the beginning of our story 💖
-                    </p>
-
-                </div>
-            </div>
-            `;
-        });
+    if (music) {
+        music.currentTime = 0;
+        music.play().catch(() => {});
     }
 
+    document.body.innerHTML = `
+    <div class="loveScene">
+        <div class="loveCard">
 
-    // ---------- NO BUTTON ----------
-    const noBtn = document.getElementById("noBtn");
+            <h1 class="bigName">Anvita ❤️</h1>
 
-    if (noBtn) {
+            <p class="reveal">
+                You just made this moment the most special memory of my life.
+            </p>
 
-        function moveButton() {
+            <p class="reveal delay1">
+                I promise to respect you, support you,
+                and always stand beside you.
+            </p>
 
-            const x = Math.random() * (window.innerWidth - 120);
-            const y = Math.random() * (window.innerHeight - 60);
+            <p class="reveal delay2">
+                I may not be perfect,
+                but my feelings for you are real.
+            </p>
 
-            noBtn.style.position = "fixed";
-            noBtn.style.left = x + "px";
-            noBtn.style.top = y + "px";
-        }
+            <p class="reveal delay3">
+                This is just the beginning of our story 💖
+            </p>
 
-        noBtn.addEventListener("mouseover", moveButton);
-        noBtn.addEventListener("touchstart", moveButton);
-    }
+        </div>
+    </div>
+    `;
+});
+
+
+// ---------- NO BUTTON ----------
+function moveNoButton(e) {
+
+    e.stopPropagation(); // 🔥 Important
+
+    const x = Math.random() * (window.innerWidth - 120);
+    const y = Math.random() * (window.innerHeight - 60);
+
+    noBtn.style.position = "fixed";
+    noBtn.style.left = x + "px";
+    noBtn.style.top = y + "px";
+}
+
+noBtn.addEventListener("mouseover", moveNoButton);
+noBtn.addEventListener("touchstart", moveNoButton);
+noBtn.addEventListener("click", moveNoButton);
 
 });
