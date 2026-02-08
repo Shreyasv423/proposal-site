@@ -1,52 +1,53 @@
-const text = "Anvita, you make my world sparkle. From the moment I met you, I knew you were the one. Will you be mine forever? ❤️";
-let index = 0;
-
-function typeWriter() {
-    if (index < text.length) {
-        document.getElementById("typewriter").innerHTML += text.charAt(index);
-        index++;
-        setTimeout(typeWriter, 50);
-    }
-}
-
-// Start typing on load
-window.onload = typeWriter;
-
 const yesBtn = document.getElementById('yesBtn');
 const noBtn = document.getElementById('noBtn');
-const music = document.getElementById('bgMusic');
+const message = document.getElementById('message');
+const heading = document.getElementById('heading');
+const music = document.getElementById('myMusic');
 
-// Yes Action
-yesBtn.addEventListener('click', () => {
-    music.play();
-    document.getElementById('main-heading').innerHTML = "I Love You, Anvita! 💍";
-    document.getElementById('typewriter').innerHTML = "You've made me the happiest person alive.";
-    createHearts(50);
-    yesBtn.style.transform = "scale(1.5)";
-    noBtn.style.display = "none";
-});
+let yesScale = 1;
 
-// No Button "Runs Away"
-noBtn.addEventListener('mouseover', () => {
+// The "No" button moves away on Hover (Laptop) and Touch (Mobile)
+function moveNoButton() {
     const x = Math.random() * (window.innerWidth - noBtn.offsetWidth);
     const y = Math.random() * (window.innerHeight - noBtn.offsetHeight);
-    noBtn.style.position = 'absolute';
-    noBtn.style.left = `${x}px`;
-    noBtn.style.top = `${y}px`;
-});
-
-// Floating Hearts Generator
-function createHearts(count) {
-    for (let i = 0; i < count; i++) {
-        const heart = document.createElement('div');
-        heart.innerHTML = "❤️";
-        heart.classList.add('heart');
-        heart.style.left = Math.random() * 100 + "vw";
-        heart.style.animationDuration = Math.random() * 3 + 2 + "s";
-        document.body.appendChild(heart);
-        
-        setTimeout(() => heart.remove(), 5000);
-    }
+    
+    noBtn.style.position = 'fixed'; // Keeps it relative to screen
+    noBtn.style.left = x + 'px';
+    noBtn.style.top = y + 'px';
+    
+    // Make the Yes button bigger every time they try to click No
+    yesScale += 0.2;
+    yesBtn.style.transform = `scale(${yesScale})`;
 }
 
-setInterval(() => createHearts(1), 300);
+noBtn.addEventListener('mouseover', moveNoButton);
+noBtn.addEventListener('touchstart', (e) => {
+    e.preventDefault(); // Prevents clicking on mobile
+    moveNoButton();
+});
+
+// Yes Click Action
+yesBtn.addEventListener('click', () => {
+    music.play().catch(e => console.log("Audio play blocked by browser."));
+    
+    heading.innerText = "Yay! ❤️";
+    message.innerText = "I knew you'd say yes, Anvita! You've made my day perfect. Click the heart to hear our song!";
+    
+    noBtn.style.display = 'none';
+    yesBtn.innerHTML = "I Love You! 💍";
+    
+    // Fireworks/Hearts effect
+    setInterval(createHeart, 100);
+});
+
+function createHeart() {
+    const heart = document.createElement('div');
+    heart.classList.add('floating-heart');
+    heart.innerHTML = '❤️';
+    heart.style.left = Math.random() * 100 + 'vw';
+    heart.style.fontSize = (Math.random() * 20 + 10) + 'px';
+    heart.style.duration = (Math.random() * 2 + 3) + 's';
+    document.body.appendChild(heart);
+    
+    setTimeout(() => heart.remove(), 4000);
+}
