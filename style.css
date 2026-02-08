@@ -69,3 +69,17 @@ button {
 @keyframes float {
     to { transform: translateY(-110vh) translateX(20px); opacity: 0; }
 }
+#heading::after {
+    content: ' 💬'; /* A small subtle hint to your messaging roots */
+    font-size: 1.2rem;
+}
+
+.card {
+    border: 2px solid #ffb6c1;
+    animation: glow 2s infinite alternate;
+}
+
+@keyframes glow {
+    from { box-shadow: 0 0 10px #fff0f3; }
+    to { box-shadow: 0 0 20px #ff4d6d; }
+}
