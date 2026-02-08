@@ -6,42 +6,44 @@ const message = document.getElementById('message');
 
 let yesSize = 1;
 
-// The "No" button logic - specialized for mobile touch and desktop hover
-function moveButton() {
+function moveButton(e) {
+    // Prevent any default behavior that might stop the move
+    if(e.type === 'touchstart') e.preventDefault();
+
     const x = Math.random() * (window.innerWidth - noBtn.offsetWidth);
     const y = Math.random() * (window.innerHeight - noBtn.offsetHeight);
     
     noBtn.style.position = 'fixed';
-    noBtn.style.left = `${x}px`;
-    noBtn.style.top = `${y}px`;
+    noBtn.style.left = x + 'px';
+    noBtn.style.top = y + 'px';
+    noBtn.style.zIndex = "999";
 
-    // Make Yes button grow so she eventually has to click it ;)
-    yesSize += 0.2;
-    yesBtn.style.transform = `scale(${yesSize})`;
+    // Growth capped so it doesn't cover the whole screen and break
+    if (yesSize < 5) {
+        yesSize += 0.2;
+        yesBtn.style.transform = `scale(${yesSize})`;
+    }
 }
 
-noBtn.addEventListener('touchstart', (e) => {
-    e.preventDefault(); 
-    moveButton();
-});
+noBtn.addEventListener('touchstart', moveButton);
 noBtn.addEventListener('mouseover', moveButton);
 
-// The Final Reveal
 yesBtn.addEventListener('click', () => {
-    // Play Perfect.mp3
-    music.play().catch(() => console.log("Audio play blocked until click"));
+    console.log("Yes button clicked!");
+    
+    // Play music
+    music.play().catch(err => console.log("Music play blocked:", err));
 
+    // Update Content
     heading.innerHTML = "It was always you, Anvita. ❤️";
+    message.innerHTML = "We may have started with messages, but you've become my whole world. I can't wait for our first 'in-person' forever. ✨";
     
-    // The "Messaging" specialized message
-    message.innerHTML = "We may have started with just text on a screen, but you've become the best part of my real world. I can't wait for our first 'in-person' forever. ✨";
-    
-    // Clean up UI
+    // Hide UI
     noBtn.style.display = 'none';
     yesBtn.style.display = 'none';
 
-    // Start the celebration
-    setInterval(createHeart, 200);
+    // Celebration
+    setInterval(createHeart, 150);
 });
 
 function createHeart() {
@@ -49,7 +51,6 @@ function createHeart() {
     heart.className = 'heart';
     heart.innerHTML = '❤️';
     heart.style.left = Math.random() * 100 + 'vw';
-    heart.style.position = 'fixed';
     heart.style.top = '-5vh';
     heart.style.fontSize = (Math.random() * 20 + 15) + 'px';
     heart.style.animation = `fall ${Math.random() * 2 + 2}s linear forwards`;
