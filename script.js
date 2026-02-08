@@ -31,7 +31,7 @@ yesBtn.addEventListener('click', () => {
     music.play().catch(e => console.log("Audio play blocked by browser."));
     
     heading.innerText = "Yay! ❤️";
-    message.innerText = "I knew you'd say yes, Anvita! You've made my day perfect. Click the heart to hear our song!";
+   message.innerHTML = "We may have started with just messages on a screen, but you've become the best part of my real world. I can't wait for our first 'in-person' forever, Anvita. ❤️";
     
     noBtn.style.display = 'none';
     yesBtn.innerHTML = "I Love You! 💍";
