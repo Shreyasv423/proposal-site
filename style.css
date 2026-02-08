@@ -118,3 +118,71 @@ button {
         font-size: 22px;
     }
 }
+/* YES PAGE */
+
+.yesPage {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    background: linear-gradient(-45deg, #ff758c, #ff7eb3, #ff9a9e, #fad0c4);
+    background-size: 400% 400%;
+    animation: gradientMove 10s ease infinite;
+}
+
+@keyframes gradientMove {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+.yesCard {
+    max-width: 500px;
+    text-align: center;
+    background: rgba(0,0,0,0.3);
+    padding: 30px;
+    border-radius: 20px;
+    backdrop-filter: blur(12px);
+}
+
+/* Text Animations */
+
+.fadeBig {
+    font-size: 38px;
+    margin-bottom: 15px;
+    animation: fadeUp 1s ease forwards;
+}
+
+.fadeText {
+    font-size: 18px;
+    opacity: 0;
+    animation: fadeUp 1s ease forwards;
+}
+
+.delay1 { animation-delay: 1s; }
+.delay2 { animation-delay: 2s; }
+.delay3 { animation-delay: 3s; }
+
+@keyframes fadeUp {
+    from {
+        transform: translateY(30px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+/* Mobile Fix */
+@media(max-width: 500px){
+    .fadeBig {
+        font-size: 28px;
+    }
+
+    .fadeText {
+        font-size: 16px;
+    }
+}
+
