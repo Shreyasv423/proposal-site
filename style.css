@@ -1,188 +1,150 @@
-* {
-    box-sizing: border-box;
+*{
+    box-sizing:border-box;
 }
 
-body {
-    margin: 0;
-    font-family: 'Segoe UI', sans-serif;
-    background: linear-gradient(135deg, #ff9a9e, #fad0c4);
-    height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    color: white;
-    text-align: center;
-    overflow: hidden;
+body{
+    margin:0;
+    font-family:Segoe UI, sans-serif;
+    color:white;
+    background: radial-gradient(circle at top,#ff9a9e,#fad0c4);
+    min-height:100vh;
 }
 
-.container {
-    background: rgba(0,0,0,0.3);
-    padding: 30px;
-    border-radius: 20px;
-    max-width: 400px;
-    width: 90%;
-    backdrop-filter: blur(10px);
+/* MAIN SCENE */
+
+.scene{
+    min-height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    padding:20px;
 }
 
-.photo {
-    width: 150px;
-    height: 150px;
-    object-fit: cover;
-    border-radius: 50%;
-    margin-bottom: 15px;
-    border: 3px solid white;
+/* CARD */
+
+.card{
+    width:100%;
+    max-width:420px;
+    text-align:center;
+    padding:30px;
+    border-radius:25px;
+    background:rgba(0,0,0,0.35);
+    backdrop-filter:blur(12px);
+    animation:fade 1.5s ease;
 }
 
-.nameGlow {
-    font-size: 28px;
-    animation: glow 2s ease-in-out infinite alternate;
+/* PHOTO */
+
+.photo{
+    width:140px;
+    height:140px;
+    border-radius:50%;
+    object-fit:cover;
+    border:3px solid white;
 }
 
-@keyframes glow {
-    from { text-shadow: 0 0 10px #fff, 0 0 20px #ff4d6d; }
-    to { text-shadow: 0 0 20px #fff, 0 0 40px #ff4d6d; }
+/* NAME */
+
+.name{
+    margin:10px 0;
+    font-size:26px;
+    letter-spacing:1px;
 }
 
-.message {
-    margin: 20px 0;
-    font-size: 16px;
-    line-height: 1.5;
+/* TEXT */
+
+.message{
+    font-size:16px;
+    line-height:1.6;
 }
 
-button {
-    padding: 12px 25px;
-    margin: 10px;
-    border: none;
-    border-radius: 30px;
-    font-size: 16px;
-    cursor: pointer;
-    transition: 0.3s;
+/* BUTTONS */
+
+.buttons{
+    margin-top:20px;
+    display:flex;
+    flex-direction:column;
+    gap:10px;
 }
 
-#yesBtn {
-    background-color: #ff4d6d;
-    color: white;
+button{
+    padding:14px;
+    border:none;
+    border-radius:30px;
+    font-size:16px;
+    cursor:pointer;
 }
 
-#yesBtn:hover {
-    transform: scale(1.1);
+#yesBtn{
+    background:#ff4d6d;
+    color:white;
 }
 
-#noBtn {
-    background-color: #6c757d;
-    color: white;
+#noBtn{
+    background:#777;
+    color:white;
 }
 
-.fadeIn {
-    animation: fadeIn 1.5s ease-in;
-}
-
-@keyframes fadeIn {
-    from { opacity: 0; }
-    to { opacity: 1; }
-}
-
-.heart {
-    position: absolute;
-    animation: float 6s linear infinite;
-}
-
-@keyframes float {
-    from { transform: translateY(100vh); opacity: 1; }
-    to { transform: translateY(-10vh); opacity: 0; }
-}
-
-#secretMessage {
-    position: fixed;
-    bottom: -100px;
-    left: 50%;
-    transform: translateX(-50%);
-    background: rgba(0,0,0,0.7);
-    padding: 15px 25px;
-    border-radius: 20px;
-    transition: 1s;
-}
-
-@media (max-width: 500px) {
-
-    .photo {
-        width: 120px;
-        height: 120px;
-    }
-
-    button {
-        width: 100%;
-    }
-
-    .nameGlow {
-        font-size: 22px;
-    }
-}
 /* YES PAGE */
 
-.yesPage {
-    min-height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 20px;
-    background: linear-gradient(-45deg, #ff758c, #ff7eb3, #ff9a9e, #fad0c4);
-    background-size: 400% 400%;
-    animation: gradientMove 10s ease infinite;
+.loveScene{
+    min-height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    padding:20px;
+    background: linear-gradient(-45deg,#ff758c,#ff7eb3,#ff9a9e,#fad0c4);
+    background-size:400% 400%;
+    animation:gradient 10s ease infinite;
 }
 
-@keyframes gradientMove {
-    0% { background-position: 0% 50%; }
-    50% { background-position: 100% 50%; }
-    100% { background-position: 0% 50%; }
+@keyframes gradient{
+    0%{background-position:0% 50%;}
+    50%{background-position:100% 50%;}
+    100%{background-position:0% 50%;}
 }
 
-.yesCard {
-    max-width: 500px;
-    text-align: center;
-    background: rgba(0,0,0,0.3);
-    padding: 30px;
-    border-radius: 20px;
-    backdrop-filter: blur(12px);
+.loveCard{
+    max-width:500px;
+    text-align:center;
+    padding:30px;
+    border-radius:25px;
+    background:rgba(0,0,0,0.35);
+    backdrop-filter:blur(15px);
 }
 
-/* Text Animations */
-
-.fadeBig {
-    font-size: 38px;
-    margin-bottom: 15px;
-    animation: fadeUp 1s ease forwards;
+.bigName{
+    font-size:38px;
+    margin-bottom:20px;
 }
 
-.fadeText {
-    font-size: 18px;
-    opacity: 0;
-    animation: fadeUp 1s ease forwards;
+.reveal{
+    opacity:0;
+    transform:translateY(20px);
+    animation:reveal 1s forwards;
 }
 
-.delay1 { animation-delay: 1s; }
-.delay2 { animation-delay: 2s; }
-.delay3 { animation-delay: 3s; }
+.delay1{animation-delay:1s;}
+.delay2{animation-delay:2s;}
+.delay3{animation-delay:3s;}
 
-@keyframes fadeUp {
-    from {
-        transform: translateY(30px);
-        opacity: 0;
-    }
-    to {
-        transform: translateY(0);
-        opacity: 1;
+@keyframes reveal{
+    to{
+        opacity:1;
+        transform:translateY(0);
     }
 }
 
-/* Mobile Fix */
-@media(max-width: 500px){
-    .fadeBig {
-        font-size: 28px;
-    }
-
-    .fadeText {
-        font-size: 16px;
-    }
+@keyframes fade{
+    from{opacity:0}
+    to{opacity:1}
 }
 
+/* MOBILE */
+
+@media(max-width:500px){
+
+.bigName{font-size:28px;}
+.message{font-size:15px;}
+
+}
