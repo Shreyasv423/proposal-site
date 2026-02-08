@@ -1,53 +1,58 @@
 const yesBtn = document.getElementById('yesBtn');
 const noBtn = document.getElementById('noBtn');
-const message = document.getElementById('message');
+const music = document.getElementById('bgMusic');
 const heading = document.getElementById('heading');
-const music = document.getElementById('myMusic');
+const message = document.getElementById('message');
 
-let yesScale = 1;
+let yesSize = 1;
 
-// The "No" button moves away on Hover (Laptop) and Touch (Mobile)
-function moveNoButton() {
+// The "No" button logic - specialized for mobile touch and desktop hover
+function moveButton() {
     const x = Math.random() * (window.innerWidth - noBtn.offsetWidth);
     const y = Math.random() * (window.innerHeight - noBtn.offsetHeight);
     
-    noBtn.style.position = 'fixed'; // Keeps it relative to screen
-    noBtn.style.left = x + 'px';
-    noBtn.style.top = y + 'px';
-    
-    // Make the Yes button bigger every time they try to click No
-    yesScale += 0.2;
-    yesBtn.style.transform = `scale(${yesScale})`;
+    noBtn.style.position = 'fixed';
+    noBtn.style.left = `${x}px`;
+    noBtn.style.top = `${y}px`;
+
+    // Make Yes button grow so she eventually has to click it ;)
+    yesSize += 0.2;
+    yesBtn.style.transform = `scale(${yesSize})`;
 }
 
-noBtn.addEventListener('mouseover', moveNoButton);
 noBtn.addEventListener('touchstart', (e) => {
-    e.preventDefault(); // Prevents clicking on mobile
-    moveNoButton();
+    e.preventDefault(); 
+    moveButton();
 });
+noBtn.addEventListener('mouseover', moveButton);
 
-// Yes Click Action
+// The Final Reveal
 yesBtn.addEventListener('click', () => {
-    music.play().catch(e => console.log("Audio play blocked by browser."));
+    // Play Perfect.mp3
+    music.play().catch(() => console.log("Audio play blocked until click"));
+
+    heading.innerHTML = "It was always you, Anvita. ❤️";
     
-    heading.innerText = "Yay! ❤️";
-   message.innerHTML = "We may have started with just messages on a screen, but you've become the best part of my real world. I can't wait for our first 'in-person' forever,Anvita. ❤️";
+    // The "Messaging" specialized message
+    message.innerHTML = "We may have started with just text on a screen, but you've become the best part of my real world. I can't wait for our first 'in-person' forever. ✨";
     
+    // Clean up UI
     noBtn.style.display = 'none';
-    yesBtn.innerHTML = "I Love You! 💍";
-    
-    // Fireworks/Hearts effect
-    setInterval(createHeart, 100);
+    yesBtn.style.display = 'none';
+
+    // Start the celebration
+    setInterval(createHeart, 200);
 });
 
 function createHeart() {
     const heart = document.createElement('div');
-    heart.classList.add('floating-heart');
+    heart.className = 'heart';
     heart.innerHTML = '❤️';
     heart.style.left = Math.random() * 100 + 'vw';
-    heart.style.fontSize = (Math.random() * 20 + 10) + 'px';
-    heart.style.duration = (Math.random() * 2 + 3) + 's';
+    heart.style.position = 'fixed';
+    heart.style.top = '-5vh';
+    heart.style.fontSize = (Math.random() * 20 + 15) + 'px';
+    heart.style.animation = `fall ${Math.random() * 2 + 2}s linear forwards`;
     document.body.appendChild(heart);
-    
-    setTimeout(() => heart.remove(), 4000);
+    setTimeout(() => heart.remove(), 3000);
 }
