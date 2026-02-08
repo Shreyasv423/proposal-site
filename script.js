@@ -1,89 +1,56 @@
-document.addEventListener("DOMContentLoaded", () => {
+// Typing Effect
+const text = "Anvita, Will You Be Mine? ❤️";
+let i = 0;
+
+function typing(){
+    if(i < text.length){
+        document.getElementById("typing").innerHTML += text.charAt(i);
+        i++;
+        setTimeout(typing,70);
+    }
+}
+typing();
+
+
+// YES BUTTON
+document.getElementById("yesBtn").addEventListener("click", () => {
 
     const music = document.getElementById("bgMusic");
 
-    // ---------- TYPING ----------
-    const typingElement = document.getElementById("typing");
-
-    if (typingElement) {
-
-        const text = "Anvita, Will You Be Mine? ❤️";
-        let i = 0;
-
-        function typing() {
-            if (i < text.length) {
-                typingElement.innerHTML += text.charAt(i);
-                i++;
-                setTimeout(typing, 70);
-            }
-        }
-
-        typing();
-    }
-
-
-
-         const music = document.getElementById("bgMusic");
-
-const yesBtn = document.getElementById("yesBtn");
-const noBtn = document.getElementById("noBtn");
-
-
-// ---------- YES BUTTON ----------
-yesBtn.addEventListener("click", function(e) {
-
-    e.stopPropagation();
-
-    if (music) {
-        music.currentTime = 0;
-        music.play().catch(() => {});
+    if(music){
+        music.play().catch(()=>{});
     }
 
     document.body.innerHTML = `
-    <div class="loveScene">
-        <div class="loveCard">
+    <div class="yesPage">
+        <div>
+            <h1>Anvita ❤️</h1>
+            <h2>You just made me the happiest person alive</h2>
 
-            <h1 class="bigName">Anvita ❤️</h1>
-
-            <p class="reveal">
-                You just made this moment the most special memory of my life.
-            </p>
-
-            <p class="reveal delay1">
+            <p>
                 I promise to respect you, support you,
                 and always stand beside you.
             </p>
 
-            <p class="reveal delay2">
-                I may not be perfect,
-                but my feelings for you are real.
-            </p>
-
-            <p class="reveal delay3">
+            <p>
                 This is just the beginning of our story 💖
             </p>
-
         </div>
     </div>
     `;
 });
 
 
-// ---------- NO BUTTON ----------
-function moveNoButton(e) {
+// NO BUTTON RUN AWAY
+const noBtn = document.getElementById("noBtn");
 
-    e.stopPropagation(); // 🔥 Important
+function moveButton(){
 
-    const x = Math.random() * (window.innerWidth - 120);
-    const y = Math.random() * (window.innerHeight - 60);
+    const x = Math.random()*200 - 100;
+    const y = Math.random()*200 - 100;
 
-    noBtn.style.position = "fixed";
-    noBtn.style.left = x + "px";
-    noBtn.style.top = y + "px";
+    noBtn.style.transform = `translate(${x}px, ${y}px)`;
 }
 
-noBtn.addEventListener("mouseover", moveNoButton);
-noBtn.addEventListener("touchstart", moveNoButton);
-noBtn.addEventListener("click", moveNoButton);
-
-});
+noBtn.addEventListener("mouseover", moveButton);
+noBtn.addEventListener("touchstart", moveButton);
