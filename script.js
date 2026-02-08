@@ -36,7 +36,7 @@ yesBtn.addEventListener('click', () => {
 
     // Update Content
     heading.innerHTML = "It was always you, Anvita. ❤️";
-    message.innerHTML = "We may have started with messages, but you've become my whole world. I can't wait for our first 'in-person' forever. ✨";
+    message.innerHTML = "They say you can't feel a connection through a screen, but they've never met you. You’ve become my favorite notification and my favorite person all at once. I can’t wait to turn our 'typing...' into talking and our messages into memories. I love you, Anvita. ✨";
     
     // Hide UI
     noBtn.style.display = 'none';
