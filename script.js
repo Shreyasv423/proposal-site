@@ -2,14 +2,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const music = document.getElementById("bgMusic");
 
-    // ---------- START MUSIC ON BUTTON CLICK ----------
-    function startMusic() {
-        if (music && music.paused) {
-            music.play().catch(() => {});
-        }
-    }
-
-
     // ---------- TYPING ----------
     const typingElement = document.getElementById("typing");
 
@@ -37,7 +29,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
         yesBtn.addEventListener("click", () => {
 
-            startMusic(); // ensures music plays
+            // 🔥 PLAY MUSIC ONLY HERE
+            if (music) {
+                music.currentTime = 0;
+                music.play().catch(() => {});
+            }
 
             document.body.innerHTML = `
             <div class="loveScene">
@@ -85,10 +81,7 @@ document.addEventListener("DOMContentLoaded", () => {
             noBtn.style.top = y + "px";
         }
 
-        // Desktop
         noBtn.addEventListener("mouseover", moveButton);
-
-        // Mobile
         noBtn.addEventListener("touchstart", moveButton);
     }
 
